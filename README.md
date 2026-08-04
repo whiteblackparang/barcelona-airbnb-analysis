@@ -11,7 +11,7 @@
 
 **성과 (요약)**
 - 숙소 타입·지역·가격·리뷰·Superhost·최소숙박일 등 8개 질문에 대해 정량 분석 완료
-- **예약 프록시 지표를 직접 설계한 뒤 공식 점유율 지표와 교차검증하여 신뢰도 문제를 발견했고, 잘못된 지표로 인해 뒤바뀐 분석 결과를 전면 재검증하여 최종 인사이트의 정확성을 확보함** (상관계수 -0.04로 자체 지표와 공식 지표가 사실상 무관하다는 것을 확인)
+- **예약 프록시 지표를 직접 설계한 뒤 공식 점유율 지표와 교차검증하여 신뢰도 문제를 발견함.** 상관계수(-0.04)를 확인한 후, 잘못된 지표로 인해 뒤바뀐 분석 결과를 전면 재검증하여 최종 인사이트의 정확성을 확보함.
 - 지표 오류로 뒤바뀐 결론을 재검증 → **Private room이 "1위"에서 "최하위"로 정정** 등 핵심 결과 전량 재확인
 - 데이터에 없는 지표(즉시예약 여부 등)는 억지로 추정하지 않고 한계로 명시 → 신뢰할 수 있는 결론만 제시
 
@@ -62,7 +62,7 @@ barcelona-airbnb-analysis/
 ```bash
 pip install pandas scipy matplotlib
 
-# 순서대로 실행 
+# 순서대로 실행 (이전 노트북의 결과물에 의존하는 구조)
 jupyter notebook notebooks/01_occupancy.ipynb
 jupyter notebook notebooks/02_clean_merge.ipynb
 jupyter notebook notebooks/03_eda_questions.ipynb
@@ -89,7 +89,23 @@ jupyter notebook notebooks/03_eda_questions.ipynb
 
 ## 사용 기술
 
-`Python` `pandas` `scipy` `matplotlib` · 통계적 가설검정(t-test), 상관분석, 지표 교차검증
+`Python` `pandas` `scipy` `matplotlib`
+
+**분석 기법**
+- 상관분석 (Pearson)
+- 독립표본 t-test
+- 프록시 지표 설계 및 교차검증
+
+---
+
+## Business Impact
+
+실제 Airbnb 운영팀이라면 다음과 같은 액션으로 이어질 수 있습니다.
+
+- Private room 상품 경쟁력 개선
+- Nou Barris 지역 호스트 지원 정책 검토
+- 가격 인하보다 평점 및 리뷰 품질 개선 우선
+- Superhost 프로그램 확대 효과 검토
 
 ---
 
@@ -98,7 +114,7 @@ jupyter notebook notebooks/03_eda_questions.ipynb
 - 분석 결과보다 먼저 데이터 자체를 검증해야 한다.
 - 프록시 지표는 반드시 공식 지표 또는 다른 근거와 교차검증해야 한다.
 - 통계적으로 유의한 결과라도 잘못된 지표에서는 잘못된 결론이 나올 수 있다.
-- 분석가는 인사이트를 만드는 사람 이전에 데이터 품질을 검증하는 사람이라는 점을 경험했다.
+- 분석 결과를 신뢰하기 위해서는 분석 이전에 데이터와 지표의 품질을 검증하는 과정이 필수적이라는 점을 배웠다.
 
 ---
 
